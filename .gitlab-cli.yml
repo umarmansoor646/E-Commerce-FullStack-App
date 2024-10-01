@@ -1,0 +1,47 @@
+stages:
+  - build
+  - deploy
+
+# Backend: Java Spring Boot
+build-backend:
+  stage: build
+  image: docker:24.0.5
+  services:
+    - docker:24.0.5-dind
+  script:
+    - docker build -t gcr.io/d424-436314/ecommerce-service:latest -f Dockerfile .
+    - docker push gcr.io/d424-436314/ecommerce-service:latest
+  only:
+    - main
+
+# Frontend: Angular
+build-frontend:
+  stage: build
+  image: docker:24.0.5
+  services:
+    - docker:24.0.5-dind
+  script:
+    - docker build -t gcr.io/d424-436314/ecommerce-app:latest -f Dockerfile .
+    - docker push gcr.io/d424-436314/ecommerce-app:latest
+  only:
+    - main
+
+# Deploy backend to Cloud Run
+deploy-backend:
+  stage: deploy
+  image: google/cloud-sdk:latest
+  script:
+    - gcloud auth configure-docker
+    - gcloud run deploy ecommerce-service --image gcr.io/d424-436314/ecommerce-service:latest --platform managed --region us-central1 --allow-unauthenticated --vpc-connector your-vpc-connector
+  only:
+    - main
+
+# Deploy frontend to Cloud Run
+deploy-frontend:
+  stage: deploy
+  image: google/cloud-sdk:latest
+  script:
+    - gcloud auth configure-docker
+    - gcloud run deploy ecommerce-app --image gcr.io/d424-436314/ecommerce-app:latest --platform managed --region us-central1 --allow-unauthenticated
+  only:
+    - main
