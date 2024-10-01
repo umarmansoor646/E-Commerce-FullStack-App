@@ -14,12 +14,12 @@ This e-commerce fullstack application is designed to provide a seamless shopping
 
 ## Design Diagram
 
-![Alt text](./assets/design_diagram.png)
+![Alt text](./assests/design_diagram.png)
 
 
 ## Architecture Diagram
 
-![Alt text](./assets/architecture_diagram.png)
+![Alt text](./assests/architecture_diagram.png)
 
 
 ## Features
