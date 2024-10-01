@@ -13,13 +13,13 @@ Sure! Here’s a template for a README file for your e-commerce application. You
 This e-commerce fullstack application is designed to provide a seamless shopping experience. It is built with Angular for the front-end and Java Spring Boot for the back-end. The application supports user registration, product browsing, shopping cart management, and order processing.
 
 ## Design Diagram
-![Alt text](./assests/architecture_diagram.png)
+![Alt text](./assets/architecture_diagram.png)
 
 
 
 ## Architecture Diagram
 
-![Alt text](./assests/design_diagram.png)
+![Alt text](./assets/design_diagram.png)
 
 
 ## Features
